@@ -1,0 +1,16 @@
+#title {
+    text-align: center;
+    height: 100px;
+    padding-top: 30px;
+    margin: 0;
+    font-size: 40px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#wrapper {
+    text-align: center;
+    background-color: aqua;
+    height: 1000px;
+    overflow: hidden;
+}
+
