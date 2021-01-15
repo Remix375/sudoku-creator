@@ -1,6 +1,6 @@
 import React from 'react';
 import './Case.css'
-import {isNumber} from '../../utils/utils'
+import Utils from '../../utils/utils'
 
 class Case extends React.Component {
     constructor(props){
@@ -12,7 +12,7 @@ class Case extends React.Component {
         if(e.target.value === ''){
             this.props.onChangeCase(this.props.lineIndex, this.props.caseIndex, e.target.value)
         }
-        if(isNumber(e.target.value)) {
+        if(Utils.isNumber(e.target.value)) {
             const value = parseInt(e.target.value)
             if(value<=9 && value>=1){
                 this.props.onChangeCase(this.props.lineIndex, this.props.caseIndex, e.target.value)

@@ -2,7 +2,7 @@ import React from 'react';
 import Board from '../Board/Board';
 import Button from '../Button/Button'
 import './App.css'
-import {  backtrack_based, delete_cases  } from '../../utils/utils'
+import Utils from '../../utils/utils'
 
 class App extends React.Component {
     constructor(props) {
@@ -20,8 +20,18 @@ class App extends React.Component {
                 [0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0]
             ],
-            solution: false,
-            difficulty: 50
+            difficulty: 50,
+            solution:[
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0]
+            ]
         }
         
         this.changeCase = this.changeCase.bind(this);
@@ -58,20 +68,21 @@ class App extends React.Component {
         )
     }
 
-    create() {
-        let tboard = this.state.board;
-        let solution = backtrack_based(tboard);
+    async create() {
+        let sol = Utils.randomGrid(this.state.board)
+        
+        let solution = JSON.parse(JSON.stringify(sol));
+        console.log('sol', solution)
+        let grid = Utils.delete_cases(sol, 30)
 
-        tboard = delete_cases(solution, 40);
-        console.log(tboard);
+        console.log(grid)
 
         this.setState({
-            board: tboard,
+            board: sol,
             solution: solution
         });
     }
 
-    
     changeDifficulty(newDif) {
         this.setState({
             difficulty: newDif
