@@ -7,6 +7,7 @@ class Button extends React.Component {
         return (
             <div>
                 <button id='reset' onClick={this.props.onreset}>Reset</button>
+                <button id='create' onClick={this.props.oncreate}>Create</button>
             </div>
         )
     }
