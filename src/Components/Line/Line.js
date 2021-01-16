@@ -1,5 +1,6 @@
 import React from 'react';
 import Case from '../Case/Case'
+import './Line.css'
 
 class Line extends React.Component {
     render() {

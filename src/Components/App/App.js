@@ -98,7 +98,7 @@ class App extends React.Component {
                     onChangeCase={this.changeCase}
                     boardData={this.state.board}
                 />
-                <Button onreset={this.reset} oncreate={this.create}/>
+                <Button onreset={this.reset} oncreate={this.create} />
             </div>
         )
     }
