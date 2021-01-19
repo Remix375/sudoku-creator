@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/sudoku-creator/static/css/main.8bba3ff0.chunk.css",
+    "main.css": "/sudoku-creator/static/css/main.8a7d21ad.chunk.css",
     "main.js": "/sudoku-creator/static/js/main.dd0b4bc6.chunk.js",
     "main.js.map": "/sudoku-creator/static/js/main.dd0b4bc6.chunk.js.map",
     "runtime-main.js": "/sudoku-creator/static/js/runtime-main.d4766310.js",
@@ -10,13 +10,13 @@
     "static/js/3.8125b117.chunk.js": "/sudoku-creator/static/js/3.8125b117.chunk.js",
     "static/js/3.8125b117.chunk.js.map": "/sudoku-creator/static/js/3.8125b117.chunk.js.map",
     "index.html": "/sudoku-creator/index.html",
-    "static/css/main.8bba3ff0.chunk.css.map": "/sudoku-creator/static/css/main.8bba3ff0.chunk.css.map",
+    "static/css/main.8a7d21ad.chunk.css.map": "/sudoku-creator/static/css/main.8a7d21ad.chunk.css.map",
     "static/js/2.260b634f.chunk.js.LICENSE.txt": "/sudoku-creator/static/js/2.260b634f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d4766310.js",
     "static/js/2.260b634f.chunk.js",
-    "static/css/main.8bba3ff0.chunk.css",
+    "static/css/main.8a7d21ad.chunk.css",
     "static/js/main.dd0b4bc6.chunk.js"
   ]
 }
