@@ -93,7 +93,6 @@ const Utils = {
 
   
   backtrack_based(orig_board) {
-    console.log(orig_board)
     // Create a temporary board for our recursion.
     let board = JSON.parse(JSON.stringify(orig_board));
     if (this.is_solved(board)) {
@@ -118,7 +117,6 @@ const Utils = {
         if (board[r][c] === 0) {
           this.complete_cell(board, r, c)
           if (this.is_solved(board)){
-            console.log(board)
             return board;
           }
           let cell = board[r][c%10]
@@ -149,15 +147,12 @@ const Utils = {
 
   
   delete_cases(origi_Board, dif) {
-    console.log('or', origi_Board)
     let nboard = origi_Board;
     for(let i=0; i<dif;i++) {
       const r = Math.floor(Math.random() * 9)
       const c = Math.floor(Math.random() * 9)
-      console.log(r, c)
       nboard[r][c] = 0
     }
-    console.log(nboard)
     return nboard
   }
 }

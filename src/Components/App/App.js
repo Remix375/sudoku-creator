@@ -31,13 +31,15 @@ class App extends React.Component {
                 [0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0]
-            ]
+            ],
+            showSolution: false
         }
         
         this.changeCase = this.changeCase.bind(this);
         this.reset = this.reset.bind(this);
         this.create = this.create.bind(this);
-        this.changeDifficulty = this.changeDifficulty.bind(this)
+        this.changeDifficulty = this.changeDifficulty.bind(this);
+        this.showSolution = this.showSolution.bind(this);
     }
 
     changeCase(lineIndex, caseIndex, value) {
@@ -63,23 +65,45 @@ class App extends React.Component {
                 [0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                ]
+                ],
+                solution: [
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                ],
+                showSolution: false,
+                randomBoard: false
             }
         )
     }
 
     async create() {
-        let sol = Utils.randomGrid(this.state.board)
-        
+        let sol = Utils.randomGrid([
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            ])
+        console.log(sol)
         let solution = JSON.parse(JSON.stringify(sol));
-        console.log('sol', solution)
-        let grid = Utils.delete_cases(sol, 30)
-
-        console.log(grid)
+        let grid = Utils.delete_cases(sol, this.state.difficulty)
 
         this.setState({
-            board: sol,
-            solution: solution
+            board: grid,
+            solution: solution,
+            showSolution: false,
+            randomBoard: true
         });
     }
 
@@ -87,6 +111,18 @@ class App extends React.Component {
         this.setState({
             difficulty: newDif
         })
+    }
+
+    showSolution() {
+        if (this.state.randomBoard) {
+            this.setState({
+                showSolution: true
+            })            
+        }
+    }
+
+    useless() {
+        return
     }
 
     render() {
@@ -98,7 +134,8 @@ class App extends React.Component {
                     onChangeCase={this.changeCase}
                     boardData={this.state.board}
                 />
-                <Button onreset={this.reset} oncreate={this.create} />
+                {this.state.showSolution == true ? <Board boardData={this.state.solution} onChangeCase={this.useless} taille={this.state.taille} /> : ''}
+                <Button onreset={this.reset} oncreate={this.create} difficulte={this.state.difficulty} changeDificulte={this.changeDifficulty} onshowSolution={this.showSolution} />
             </div>
         )
     }
