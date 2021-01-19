@@ -15,12 +15,12 @@ const Utils = {
   
   
   get_row(board, row) {
-    // Given a board, we can return a single row
+    // retourne la ligne
     return board[row]
   },
   
   get_column(board, column) {
-    // Given a board, we iterate the rows to return a column
+    // retourne une colonne
     var col = []
     for (let row = 0; row < 9; row++) {
       col.push(board[row][column]);
@@ -50,7 +50,7 @@ const Utils = {
       }
     }
     if (possibilities.length === 1) {
-      // If there is only one valid possibility, fill it in
+      // Si il n'y a qu'une possibilite, la remplire
       board[r][c] = possibilities[0]
       return true
     } else {
@@ -69,19 +69,19 @@ const Utils = {
   is_solved(board) {
     let expected = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     let valid = true
-    // Check all rows
+    // verifier les lignes
     for (let r = 0; r < 9 && valid === true; r++) {
       if (!this.compare(expected, this.get_row(board, r))) {
         valid = false
       }
     }
-    // Check all columns
+    // verifier les colonnes
     for (let c = 0; c < 9 && valid === true; c++) {
       if (!this.compare(expected, this.get_column(board, c))) {
         valid = false
       }
     }
-    // Check all quadrants
+    // verifier les carres 3x3
     for (let q = 1; q < 9 && valid === true; q++) {
       if (!this.compare(expected, this.get_square(board, q))) {
         valid = false
@@ -93,7 +93,7 @@ const Utils = {
 
   
   backtrack_based(orig_board) {
-    // Create a temporary board for our recursion.
+    // creer une board temporaire pour la recursion
     let board = JSON.parse(JSON.stringify(orig_board));
     if (this.is_solved(board)) {
       board = [
@@ -122,17 +122,17 @@ const Utils = {
           let cell = board[r][c%10]
           if (Array.isArray(cell)) {
             for (let i = 0; i < cell.length; i++) {
-              // Create a temporary board for each recursion.
+              // board temporaire pour chaque recursion.
               let board_2 = JSON.parse(JSON.stringify(board));
-              // Choose a value
+              // choisir valeur
               board_2[r][c] = cell[i]
-              // Recurse again using new board
+              // Recursion avec nouvelle board
               let completed_board = this.backtrack_based(board_2)
               if (completed_board) {
                 return completed_board
               }
             }
-            return false // dead end
+            return false // marche pas
           }
         }
       }
