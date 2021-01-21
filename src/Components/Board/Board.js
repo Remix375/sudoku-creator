@@ -18,9 +18,8 @@ class Board extends React.Component {
         }
 
         return (
-            <table>
-                {lines}
-            </table>
+            <table>{lines}</table>
+            
         )
     }
 }

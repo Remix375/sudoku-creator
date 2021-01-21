@@ -22,9 +22,9 @@ class Button extends React.Component {
                 </div>
                 <div id = 'difficulte'>
                     <h1>Difficulte du sudoku: {this.props.difficulte===30?'Ez': this.props.difficulte===50? 'moyen' : 'Dur'}</h1>
-                    <button id='ez' class='dif' onClick={this.changeDifficulty}>EZ</button>
-                    <button id='moyen' class='dif' onClick={this.changeDifficulty}>Moyen</button>
-                    <button id='dur' class='dif' onClick={this.changeDifficulty}>Dur</button>
+                    <button id='ez' className='dif' onClick={this.changeDifficulty}>EZ</button>
+                    <button id='moyen' className='dif' onClick={this.changeDifficulty}>Moyen</button>
+                    <button id='dur' className='dif' onClick={this.changeDifficulty}>Dur</button>
                 </div>
                 <button onClick={this.props.onshowSolution} id='solution'>Solution</button>
             </div>

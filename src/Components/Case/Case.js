@@ -34,7 +34,7 @@ class Case extends React.Component {
         }
 
         //classe couleur
-        let couleur = this.props.boardData[this.props.lineIndex][this.props.caseIndex][1] === 'w' ? 'white' : this.props.boardData[this.props.lineIndex][this.props.caseIndex][1] === 'g' ? 'green' : 'red'
+        let couleur = this.props.boardData[this.props.lineIndex][this.props.caseIndex][1] === 'b' ? 'black' : 'red'
 
         return (
             

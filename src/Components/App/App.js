@@ -37,16 +37,10 @@ class App extends React.Component {
         //modifier avec nouvelle valeur
         boardCopy[lineIndex][caseIndex][0] = parseInt(value);
 
-        for (let i=0; i<boardCopy.length; i++) {
-            for (let k=0; k<boardCopy.length; k++) {
-                boardCopy[i][k][1] = 'w'
-            }    
-        }
-
         if (parseInt(value) === 0) {
-            boardCopy[lineIndex][caseIndex][1] = 'w'
+            boardCopy[lineIndex][caseIndex][1] = 'b'
         } else if (boardCopy[lineIndex][caseIndex][0] === this.state.solution[lineIndex][caseIndex][0]) {
-            boardCopy[lineIndex][caseIndex][1] = 'g'
+            boardCopy[lineIndex][caseIndex][1] = 'b'
             boardCopy[lineIndex][caseIndex][2] = false
         } else {
             boardCopy[lineIndex][caseIndex][1] = 'r'

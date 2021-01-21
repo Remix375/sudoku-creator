@@ -187,9 +187,9 @@ const Utils = {
 
         for (let k = 0; k<gridCopy[0].length; k++){
             if (gridCopy[i][k] === 0) {
-                line.push([gridCopy[i][k], 'w', true]);
+                line.push([gridCopy[i][k], 'b', true]);
             } else {
-                line.push([gridCopy[i][k], 'w', false]);
+                line.push([gridCopy[i][k], 'b', false]);
             }
         }  
         returnGrid.push(line)

@@ -19,7 +19,7 @@ class Line extends React.Component {
         }
 
         return (
-            <div>{cases}</div>
+            cases
         )
     }
 }

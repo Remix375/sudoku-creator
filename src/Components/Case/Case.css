@@ -14,15 +14,15 @@
 }
 
 .red {
-  background-color: red;
+  color: red;
 }
 
 .green {
-  background-color: green;
+  color: green;
 }
 
-.white {
-  background-color: white;
+.black {
+  color: black;
 }
 
 
