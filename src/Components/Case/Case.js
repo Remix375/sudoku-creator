@@ -11,7 +11,7 @@ class Case extends React.Component {
     onChange(e) {
         //fonction pour changer la valeur des cases dans le state de App.js
         if(e.target.value === ''){
-            this.props.onChangeCase(this.props.lineIndex, this.props.caseIndex, e.target.value)
+            this.props.onChangeCase(this.props.lineIndex, this.props.caseIndex, '0')
         }
         if(Utils.isNumber(e.target.value)) {
             const value = parseInt(e.target.value)
@@ -22,7 +22,8 @@ class Case extends React.Component {
     }
 
     render() {
-        let value = this.props.boardData[this.props.lineIndex][this.props.caseIndex] !== 0 ? this.props.boardData[this.props.lineIndex][this.props.caseIndex] : ''
+        let value = this.props.boardData[this.props.lineIndex][this.props.caseIndex][0] !== 0 ? this.props.boardData[this.props.lineIndex][this.props.caseIndex][0] : '';
+        //class border
         let borderside;
         let borderbottom
         if (this.props.lineIndex === 2 || this.props.lineIndex === 5){
@@ -31,10 +32,14 @@ class Case extends React.Component {
         if (this.props.caseIndex === 2 || this.props.caseIndex === 5) {
             borderside = 'side'
         }
+
+        //classe couleur
+        let couleur = this.props.boardData[this.props.lineIndex][this.props.caseIndex][1] === 'w' ? 'white' : this.props.boardData[this.props.lineIndex][this.props.caseIndex][1] === 'g' ? 'green' : 'red'
+
         return (
             
 
-            <input className={`case ${borderbottom} ${borderside}`}  onChange={this.onChange} value={value}></input>
+            <input className={`case ${borderbottom} ${borderside} ${couleur}`}  onChange={this.onChange} value={value}></input>
         )
     }
 

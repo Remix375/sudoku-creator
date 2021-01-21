@@ -160,7 +160,42 @@ const Utils = {
       nboard[r][c] = 0
     }
     return nboard
-  }
+  },
+
+
+  //create grid for state
+  createStateGrid(grid) {
+    let gridCopy = grid
+    if (!grid){
+      gridCopy = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ]
+    }
+
+
+    let returnGrid = [];
+    for (let i = 0; i<gridCopy.length; i++){
+      let line = []
+
+        for (let k = 0; k<gridCopy[0].length; k++){
+            if (gridCopy[i][k] === 0) {
+                line.push([gridCopy[i][k], 'w', true]);
+            } else {
+                line.push([gridCopy[i][k], 'w', false]);
+            }
+        }  
+        returnGrid.push(line)
+    }
+    return returnGrid;
+}
 }
 
-export default Utils; 
+export default Utils;

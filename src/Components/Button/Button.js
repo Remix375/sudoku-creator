@@ -8,7 +8,7 @@ class Button extends React.Component {
     }
 
     changeDifficulty(e) {
-        this.props.changeDificulte(e.target.id == 'ez' ? 30 : e.target.id == 'moyen' ? 50 : 70)
+        this.props.changeDificulte(e.target.id === 'ez' ? 30 : e.target.id === 'moyen' ? 50 : 70)
 
     }
     

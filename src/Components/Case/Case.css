@@ -13,6 +13,18 @@
   border-right: 3px solid black;
 }
 
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+.white {
+  background-color: white;
+}
+
 
 /*se debarrasser des fleches ds input num
 /* Chrome, Safari, Edge, Opera */
