@@ -2,8 +2,16 @@
     height: 40px;
     width: 40px;
     font-size: 30px;
+    border: 0px solid black;
 }
 
+.bottom {
+  border-bottom: 3px solid black;
+}
+
+.side {
+  border-right: 3px solid black;
+}
 
 
 /*se debarrasser des fleches ds input num

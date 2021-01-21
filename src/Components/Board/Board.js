@@ -7,7 +7,14 @@ class Board extends React.Component {
         let lines = []
         const taille = this.props.taille
         for(let i=0; i<taille; i++) {
-            lines.push(<tr><Line key={i} lineIndex={i} taille={taille} onChangeCase={this.props.onChangeCase} boardData={this.props.boardData}/>{}</tr>)
+            lines.push(<tr>
+                <Line 
+                key={i} 
+                lineIndex={i} 
+                taille={taille} 
+                onChangeCase={this.props.onChangeCase} 
+                boardData={this.props.boardData}/>
+                </tr>)
         }
 
         return (

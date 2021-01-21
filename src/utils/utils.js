@@ -1,6 +1,13 @@
 
+//objet avec fonctions utiles pour projet
+//importe dans App.js
+
 const Utils = {
+
+  //verifier si une variable est un nombre
   isNumber(n) { return !isNaN(parseFloat(n)) && !isNaN(n - 0) },
+
+  //pour verifier les carres de 3
   square_coordinates: [
     [1, 1, 1, 2, 2, 2, 3, 3, 3],
     [1, 1, 1, 2, 2, 2, 3, 3, 3],
@@ -29,6 +36,7 @@ const Utils = {
   },
   
   get_square(board, square) {
+    //recup carre de 3
     let cells = []
     for (let r = 0; r < 9; r++) {
       for (let c = 0; c < 9; c++) {
@@ -42,8 +50,11 @@ const Utils = {
   
   
   complete_cell(board, r, c) {
+    //used liste des valeurs que l'on ne peut pas utiliser dans la case
     let used = [...this.get_row(board, r), ...this.get_column(board, c), ...this.get_square(board, this.square_coordinates[r][c])]
+
     let possibilities = []
+    //mettre les valeurs qui ne sont pas dans used dans possibilities
     for (let p = 1; p <= 9; p++) {
       if (!used.includes(p)) {
         possibilities.push(p)
@@ -54,6 +65,7 @@ const Utils = {
       board[r][c] = possibilities[0]
       return true
     } else {
+      // remplir la case avec la liste de possibilites
       board[r][c] = possibilities
       return false
     }
@@ -67,6 +79,8 @@ const Utils = {
   },
   
   is_solved(board) {
+    //verifier si la grille est resolue
+
     let expected = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     let valid = true
     // verifier les lignes
@@ -95,38 +109,34 @@ const Utils = {
   backtrack_based(orig_board) {
     // creer une board temporaire pour la recursion
     let board = JSON.parse(JSON.stringify(orig_board));
-    if (this.is_solved(board)) {
-      board = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-      ]
-    }
     
     for (let r =0; r < 9; r++) {
+      //boucle c commence a chaque fois aleatoirement pour remplire les cases dans des ordres differents et avoir une grille aleatoir
       let c_ = Math.floor(Math.random() * 9);
       for (let c_loop=c_; c_loop < c_+9; c_loop++) {
         let c = c_loop %9
         
+
         if (board[r][c] === 0) {
+          //essayer de completer la case et verifier si sudoku est fini
           this.complete_cell(board, r, c)
           if (this.is_solved(board)){
             return board;
           }
-          let cell = board[r][c%10]
+
+          let cell = board[r][c]
+
+          //si la case n'est pas remplie et est donc une array
           if (Array.isArray(cell)) {
+
+            //possibilite de choisir valeur aleatoire de la liste de valeurs pour commencer recursion pour plus d'aleatoire en plus de la boucle qui commence par des cases aleatoires
+
             for (let i = 0; i < cell.length; i++) {
               // board temporaire pour chaque recursion.
               let board_2 = JSON.parse(JSON.stringify(board));
               // choisir valeur
               board_2[r][c] = cell[i]
-              // Recursion avec nouvelle board
+              // Recursion avec nouvelle board avec premiere valeur de la liste des possibilites
               let completed_board = this.backtrack_based(board_2)
               if (completed_board) {
                 return completed_board
@@ -141,12 +151,8 @@ const Utils = {
   },
   
   
-  randomGrid(grid) {
-    return this.backtrack_based(grid)
-  },
-
-  
   delete_cases(origi_Board, dif) {
+    //supprimer des cases de la grille remplie
     let nboard = origi_Board;
     for(let i=0; i<dif;i++) {
       const r = Math.floor(Math.random() * 9)

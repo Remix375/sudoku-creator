@@ -8,7 +8,9 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            //inutile pour l'instant
             taille: 9,
+            //sudoku a remplir
             board:  [
                 [0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -20,7 +22,9 @@ class App extends React.Component {
                 [0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0]
             ],
+            //nombre de cases a enlever
             difficulty: 50,
+            //sudoku fini
             solution:[
                 [0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -35,6 +39,8 @@ class App extends React.Component {
             showSolution: false
         }
         
+
+        //bind fonctions
         this.changeCase = this.changeCase.bind(this);
         this.reset = this.reset.bind(this);
         this.create = this.create.bind(this);
@@ -42,9 +48,14 @@ class App extends React.Component {
         this.showSolution = this.showSolution.bind(this);
     }
 
+
+    //synchroniser app et ecran  toutes les cases changees sont changees ds le state
     changeCase(lineIndex, caseIndex, value) {
+        //prendre board
         const boardCopy = this.state.board;
+        //modifier avec nouvelle valeur
         boardCopy[lineIndex][caseIndex] = parseInt(value);
+        //set nouvelle board
         this.setState(
             {
                 board: boardCopy
@@ -53,6 +64,7 @@ class App extends React.Component {
     }
 
     reset() {
+        //remettre les params au debut
         this.setState(
             {
                 board: [
@@ -83,8 +95,10 @@ class App extends React.Component {
         )
     }
 
-    async create() {
-        let sol = Utils.randomGrid([
+    create() {
+        //appeler fonction randomGrid dans utils avec grille base
+        //retourne une grille aleatoire remplie
+        let sol = Utils.backtrack_based([
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -94,20 +108,24 @@ class App extends React.Component {
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            ])
-        console.log(sol)
+        ])
+
+        //solution est les grille remplie
         let solution = JSON.parse(JSON.stringify(sol));
+
+        //supprimer des cases de la grille
         let grid = Utils.delete_cases(sol, this.state.difficulty)
 
         this.setState({
             board: grid,
             solution: solution,
-            showSolution: false,
+            //showSolution: false,
             randomBoard: true
         });
     }
 
     changeDifficulty(newDif) {
+        //changer nombre de cases a enlever
         this.setState({
             difficulty: newDif
         })
@@ -122,6 +140,7 @@ class App extends React.Component {
     }
 
     useless() {
+        //passer fonction inutile
         return
     }
 
