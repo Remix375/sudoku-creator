@@ -8,7 +8,21 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            started: false,
+            //representation de la grille
+            //1 : nombre ds la grille 2: couleur 3: modifiable
+            board: [
+                [[0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true]], 
+                [[0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true]], 
+                [[0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true]], 
+                [[0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true]], 
+                [[0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true]], 
+                [[0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true]], 
+                [[0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true]], 
+                [[0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true]],
+                [[0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true], [0, 'b', true]]
+            ],
+
+            //solution board will be created on creation of sudoku
 
             //inutile pour l'instant
             taille: 9,
@@ -25,7 +39,7 @@ class App extends React.Component {
         this.create = this.create.bind(this);
         this.changeDifficulty = this.changeDifficulty.bind(this);
         this.showSolution = this.showSolution.bind(this);
-        this.start = this.start.bind(this);
+        //this.start = this.start.bind(this);
     }
 
 
@@ -115,6 +129,8 @@ class App extends React.Component {
         return
     }
 
+
+    /*/
     start() {
         let board = Utils.createStateGrid()
         console.log(board)
@@ -125,24 +141,35 @@ class App extends React.Component {
             board: board}
         )
     }
-
+    va avec bouton ds render
+    /*/
 
     render() {
+
+        /*/
+        button to get to sudoku
+        pas bon 
         if (!this.state.started) {
             return (
-                <button onClick={this.start}>Start</button>
+                <div id='startingdiv'>
+                    <div id ='startingButton'>
+                        <h1 onClick={this.start} id='startingtext'>Go to Sudoku</h1>
+                    </div>
+                </div>
+
+                
             )
         }
-
+        /*/
         return (
-            <div id='wrapper'>
+            <div id='wrapper' onLoad={() => this.start()}>
                 <h1 id='title'>Sudoku</h1>
                 <Board 
                     taille={this.state.taille} 
                     onChangeCase={this.changeCase}
                     boardData={this.state.board}
                 />
-                {this.state.showSolution == true ? <Board boardData={this.state.solution} onChangeCase={this.useless} taille={this.state.taille} /> : ''}
+                {this.state.showSolution === true ? <Board boardData={this.state.solution} onChangeCase={this.useless} taille={this.state.taille} /> : ''}
                 <Button 
                 onreset={this.reset} 
                 oncreate={this.create} 

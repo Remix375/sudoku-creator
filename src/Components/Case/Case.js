@@ -9,6 +9,9 @@ class Case extends React.Component {
     }
 
     onChange(e) {
+        if (!this.props.boardData[this.props.lineIndex][this.props.caseIndex][2]) {
+            return
+        }
         //fonction pour changer la valeur des cases dans le state de App.js
         if(e.target.value === ''){
             this.props.onChangeCase(this.props.lineIndex, this.props.caseIndex, '0')
@@ -25,7 +28,7 @@ class Case extends React.Component {
         let value = this.props.boardData[this.props.lineIndex][this.props.caseIndex][0] !== 0 ? this.props.boardData[this.props.lineIndex][this.props.caseIndex][0] : '';
         //class border
         let borderside;
-        let borderbottom
+        let borderbottom;
         if (this.props.lineIndex === 2 || this.props.lineIndex === 5){
             borderbottom = 'bottom'
         }
@@ -33,12 +36,12 @@ class Case extends React.Component {
             borderside = 'side'
         }
 
+
         //classe couleur
-        let couleur = this.props.boardData[this.props.lineIndex][this.props.caseIndex][1] === 'b' ? 'black' : 'red'
+        const couleur = this.props.boardData[this.props.lineIndex][this.props.caseIndex][1] === 'b' ? 'black' : 'red';
 
         return (
             
-
             <input className={`case ${borderbottom} ${borderside} ${couleur}`}  onChange={this.onChange} value={value}></input>
         )
     }

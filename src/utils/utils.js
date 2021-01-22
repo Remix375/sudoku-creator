@@ -164,6 +164,7 @@ const Utils = {
 
 
   //create grid for state
+  //dont pass argument to create empty grid
   createStateGrid(grid) {
     let gridCopy = grid
     if (!grid){

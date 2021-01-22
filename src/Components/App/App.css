@@ -18,3 +18,36 @@
     background-size: cover;
 }
 
+
+
+#startingButton {
+    text-align: center;
+    margin-top: 18%;
+	background:linear-gradient(to bottom, #eae0c2 5%, #ccc2a6 100%);
+	background-color:#eae0c2;
+	border-radius:42px;
+	display:inline-block;
+	cursor:pointer;
+	color:#505739;
+	font-family:Arial;
+	font-size:28px;
+	font-weight:bold;
+    padding:32px 76px;
+	text-decoration:none;
+	text-shadow:1px 2px 0px #ffffff;
+}
+
+#startingButton:hover {
+	background:linear-gradient(to bottom, #ccc2a6 5%, #eae0c2 100%);
+	background-color:#ccc2a6;
+}
+
+#startingdiv {
+    background-color: black;
+    height: 100vh;
+    text-align: center;
+}
+
+#startingtext {
+    font-size: 70px;
+}
